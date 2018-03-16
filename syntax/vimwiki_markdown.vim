@@ -14,11 +14,11 @@ let s:markdown_syntax.char_eqin = '\$'
 " text: *strong*
 " let s:markdown_syntax.rxBold = '\*[^*]\+\*'
 let s:markdown_syntax.rxBold = '\%(^\|\s\|[[:punct:]]\)\@<='.
-      \'\*'.
+      \'\*\*'.
       \'\%([^*`[:space:]][^*`]*[^*`[:space:]]\|[^*`[:space:]]\)'.
-      \'\*'.
+      \'\*\*'.
       \'\%([[:punct:]]\|\s\|$\)\@='
-let s:markdown_syntax.char_bold = '*'
+let s:markdown_syntax.char_bold = '**'
 
 " text: _emphasis_
 " let s:markdown_syntax.rxItalic = '_[^_]\+_'
@@ -31,18 +31,18 @@ let s:markdown_syntax.char_italic = '_'
 
 " text: *_bold italic_* or _*italic bold*_
 let s:markdown_syntax.rxBoldItalic = '\%(^\|\s\|[[:punct:]]\)\@<='.
-      \'\*_'.
+      \'\*\*_'.
       \'\%([^*_`[:space:]][^*_`]*[^*_`[:space:]]\|[^*_`[:space:]]\)'.
-      \'_\*'.
+      \'_\*\*'.
       \'\%([[:punct:]]\|\s\|$\)\@='
-let s:markdown_syntax.char_bolditalic = '\*_'
+let s:markdown_syntax.char_bolditalic = '\*\*_'
 
 let s:markdown_syntax.rxItalicBold = '\%(^\|\s\|[[:punct:]]\)\@<='.
-      \'_\*'.
+      \'_\*\*'.
       \'\%([^*_`[:space:]][^*_`]*[^*_`[:space:]]\|[^*_`[:space:]]\)'.
-      \'\*_'.
+      \'\*\*_'.
       \'\%([[:punct:]]\|\s\|$\)\@='
-let s:markdown_syntax.char_italicbold = '_\*'
+let s:markdown_syntax.char_italicbold = '_\*\*'
 
 " text: `code`
 let s:markdown_syntax.rxCode = '`[^`]\+`'
