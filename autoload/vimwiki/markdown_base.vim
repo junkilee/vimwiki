@@ -67,7 +67,6 @@ function! s:normalize_link_syntax_n() " {{{
     " NO-OP !!
     return
   endif
-
   " try WikiLink0: replace with WikiLink1
   let lnk = vimwiki#base#matchstr_at_cursor(vimwiki#vars#get_syntaxlocal('rxWikiLink0'))
   if !empty(lnk)

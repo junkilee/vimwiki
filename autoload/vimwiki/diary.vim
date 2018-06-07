@@ -140,13 +140,18 @@ function! s:format_diary() "{{{
       call add(result, substitute(vimwiki#vars#get_syntaxlocal('rxH3_Template'), '__Header__', s:get_month_name(month), ''))
 
       for [fl, cap] in s:sort(items(g_files[year][month]))
+        if cap == ''
+          let cap = fl
+        endif
         if empty(cap)
-          let entry = substitute(vimwiki#vars#get_global('WikiLinkTemplate1'), '__LinkUrl__', fl, '')
-          let entry = substitute(entry, '__LinkDescription__', cap, '')
+          "let entry = substitute(vimwiki#vars#get_global('WikiLinkTemplate1'), '__LinkUrl__', fl, '')
+          "let entry = substitute(entry, '__LinkDescription__', cap, '')
+          let entry = vimwiki#base#apply_template(vimwiki#vars#get_syntaxlocal('Weblink1Template'), fl, cap, '')
           call add(result, repeat(' ', &sw).'* '.entry)
         else
-          let entry = substitute(vimwiki#vars#get_global('WikiLinkTemplate2'), '__LinkUrl__', fl, '')
-          let entry = substitute(entry, '__LinkDescription__', cap, '')
+          let entry = vimwiki#base#apply_template(vimwiki#vars#get_syntaxlocal('Weblink1Template'), fl, cap, '')
+          "let entry = substitute(vimwiki#vars#get_global('WikiLinkTemplate2'), '__LinkUrl__', fl, '')
+          "let entry = substitute(entry, '__LinkDescription__', cap, '')
           call add(result, repeat(' ', &sw).'* '.entry)
         endif
       endfor
@@ -171,6 +176,7 @@ function! vimwiki#diary#make_note(wnum, ...) "{{{
   else
     let idx = 0
   endif
+
 
   call vimwiki#path#mkdir(vimwiki#vars#get_wikilocal('path', idx).vimwiki#vars#get_wikilocal('diary_rel_path', idx))
 

@@ -468,7 +468,7 @@ function! s:populate_extra_markdown_vars()
   let mkd_syntax.rxWikiLink0MatchDescr = mkd_syntax.rxWikiLinkMatchDescr
 
   let wikilink_md_prefix = '['
-  let wikilink_md_suffix = ']'
+  let wikilink_md_suffix = '.md]'
   let wikilink_md_separator = ']['
   let rx_wikilink_md_separator = vimwiki#u#escape(wikilink_md_separator)
   let mkd_syntax.rx_wikilink_md_prefix = vimwiki#u#escape(wikilink_md_prefix)
@@ -543,7 +543,8 @@ function! s:populate_extra_markdown_vars()
   let mkd_syntax.rxWeblinkMatchDescr0 = mkd_syntax.rxWeblinkMatchDescr
 
   let mkd_syntax.rxWeblink1Prefix = '['
-  let mkd_syntax.rxWeblink1Suffix = ')'
+  " Jun's modification
+  let mkd_syntax.rxWeblink1Suffix = vimwiki#vars#get_wikilocal('ext').')'
   let mkd_syntax.rxWeblink1Separator = ']('
   " [DESCRIPTION](URL)
   let mkd_syntax.Weblink1Template = mkd_syntax.rxWeblink1Prefix . '__LinkDescription__'.
